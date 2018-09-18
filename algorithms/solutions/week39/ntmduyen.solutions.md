@@ -3,7 +3,7 @@
 ```cpp
 class Solution {
 public:
-    int safe_add(long long a, int b) {
+    int safe_add(int a, int b) {
         if (a > 0 && b > INT_MAX - a) {
             return INT_MAX;
         } else if (a < 0 && b < INT_MIN - a) {
@@ -26,10 +26,10 @@ public:
         while (x != 0) {
             c = safe_mul(c, 10);
             c = safe_add(c, x % 10);
+            if (c >= INT_MAX || c <= INT_MIN) {
+                return 0;
+            }
             x = x / 10;
-        }
-        if (c >= INT_MAX || c <= INT_MIN) {
-            return 0;
         }
         return c;
     }
